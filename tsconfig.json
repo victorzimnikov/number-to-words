@@ -1,0 +1,17 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "noEmit": false,
+    "lib": ["es2018"],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2020",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "jest.config.js",
+    "prettier.config.js",
+    ".eslintrc.js"
+  ]
+}
