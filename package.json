@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "description": "Число прописью",
   "main": "index.js",
+  "keywords": [
+    "words",
+    "number",
+    "number to words"
+  ],
   "repository": "https://github.com/victorzimnikov/number-to-words",
   "author": {
     "email": "victor.zimnikov@yandex.ru",
