@@ -1,6 +1,6 @@
 {
   "name": "@victorzimnikov/number-to-words",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Число прописью",
   "main": "index.js",
   "keywords": [
@@ -38,10 +38,20 @@
         }
       ],
       [
-        "@pika/plugin-build-node"
+        "@pika/plugin-build-node",
+        {
+          "exclude": [
+            "__tests__/**/*"
+          ]
+        }
       ],
       [
-        "@pika/plugin-ts-standard-pkg"
+        "@pika/plugin-ts-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**/*"
+          ]
+        }
       ]
     ]
   },
