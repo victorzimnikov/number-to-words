@@ -135,16 +135,12 @@ interface ParseDecimalsOptionsProps {
 }
 
 const parseDecimals = (
-  number: number | string,
+  number: number,
   { showZeroCents = true, centDictionary, withStartZero = true }: ParseDecimalsOptionsProps,
 ) => {
   const text = plural(number, parseStringToArray(centDictionary));
 
-  const value = typeof number === "string" ? toInteger(number) : number;
-
-  if (isNaN(value)) {
-    return "";
-  }
+  const value = number;
 
   if (value === 0 && showZeroCents) {
     if (withStartZero) {
@@ -208,17 +204,12 @@ export const formatNumberToWord = (
     return "";
   }
 
-  let split;
-  let decimals;
-
   let stringValue = value.toFixed(2);
 
-  if (stringValue.indexOf(".") !== -1) {
-    split = stringValue.split(".");
+  const split = stringValue.split(".");
 
-    decimals = split[1];
-    stringValue = split[0];
-  }
+  const decimals = split[1];
+  stringValue = split[0];
 
   let digit;
   let count = 0;
@@ -243,15 +234,12 @@ export const formatNumberToWord = (
 
   numeral = numeral.replace(/\s+/g, " ");
 
-  if (decimals) {
-    numeral =
-      numeral +
-      parseDecimals(toFloat(decimals), {
-        showZeroCents,
-        withStartZero,
-        centDictionary: currentDictionary.cent,
-      });
-  }
-
-  return numeral;
+  return (
+    numeral +
+    parseDecimals(toFloat(decimals), {
+      showZeroCents,
+      withStartZero,
+      centDictionary: currentDictionary.cent,
+    })
+  );
 };
