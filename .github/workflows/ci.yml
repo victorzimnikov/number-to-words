@@ -1,0 +1,26 @@
+name: vsbl front
+
+on:
+  push:
+    branches:
+      - master # Push events on master branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          version: ${{ matrix.node_version }}
+
+      - name: ci
+        run: |
+          yarn install --no-save
+          yarn ci
