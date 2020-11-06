@@ -88,9 +88,14 @@ function formatNumberToWord(
 ##### Пример использования
 
 ```typescript
-import { CurrencyCode, formatNumberToWord, Language } from "@victorzimnikov/number-to-words";
+import {
+  CurrencyCode,
+  DictionaryType,
+  formatNumberToWord,
+  Language,
+} from "@victorzimnikov/number-to-words";
 
-export const NUMBER_TO_WORDS_DICTIONARY: Dict<Dict<DictionaryProps>> = {
+export const NUMBER_TO_WORDS_DICTIONARY: DictionaryType = {
   [CurrencyCode.RussianRuble]: {
     [Language.Russian]: {
       cent: ["копейка", "копейки", "копеек"],
