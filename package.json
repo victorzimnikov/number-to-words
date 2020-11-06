@@ -20,10 +20,10 @@
     "pika:version": "pika",
     "version": "npm run build",
     "pika:build": "pika build",
-    "pika:publish": "pika publish",
     "test:coverage": "jest --coverage",
     "ci": "npm-run-all format lint dts",
     "build": "npm-run-all ci test pika:build",
+    "pika:publish": "pika publish --no-tests",
     "lint": "eslint --quiet \"src/**/*.{tsx,ts,js}\"",
     "format": "prettier --write \"src/**/*.{tsx,ts,js}\""
   },
