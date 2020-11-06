@@ -24,3 +24,7 @@ jobs:
         run: |
           yarn install --no-save
           yarn ci
+
+      - name: test
+        run: |
+          yarn test
