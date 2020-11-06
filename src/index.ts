@@ -43,6 +43,18 @@ function toInteger(number: string): number {
   return parseInt(number);
 }
 
+function normalizeWordsArrays(words: string[][]): string[][] {
+  const first = words[0];
+  const second = words[1];
+  const third = words[2];
+
+  return [
+    ["", ...first],
+    ["", "", ...second],
+    ["", ...third],
+  ];
+}
+
 const plural = (count: string | number, options: string[]): string => {
   if (options.length !== 3) {
     return "";
@@ -78,19 +90,21 @@ const parseNumber = (
 
   let value = number;
 
+  const normalizedWords = normalizeWordsArrays(words);
+
   if (value.length === 3) {
     first = value.substr(0, 1);
     value = value.substr(1, 3);
-    numeral = "" + words[2][first] + " ";
+    numeral = "" + normalizedWords[2][first] + " ";
   }
 
   // @ts-ignore
   if (value < 20) {
-    numeral = numeral + words[0][toFloat(value)] + " ";
+    numeral = numeral + normalizedWords[0][toFloat(value)] + " ";
   } else {
     first = value.substr(0, 1);
     second = value.substr(1, 2);
-    numeral = numeral + words[1][first] + " " + words[0][second] + " ";
+    numeral = numeral + normalizedWords[1][first] + " " + normalizedWords[0][second] + " ";
   }
 
   if (count === 0) {
