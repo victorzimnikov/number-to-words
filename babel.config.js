@@ -11,6 +11,6 @@ module.exports = api => {
 
   return {
     compact: false,
-    presets: ["@babel/preset-typescript", ["@babel/preset-env", { targets: { node: true } }]],
+    presets: [["@babel/preset-env", { targets: { node: true } }], "@babel/preset-typescript"],
   };
 };
