@@ -6,6 +6,7 @@ const RUSSIAN_RUBLE_DICTIONARY: DictionaryProps = {
   thousand: ["тысяча", "тысячи", "тысяч"],
   million: ["миллион", "миллиона", "миллионов"],
   billion: ["миллиард", "миллиарда", "миллиардов"],
+  trillion: ["триллион", "триллиона", "триллионов"],
   declinationOfThousands: (x) => x.replace("один ", "одна ").replace("два ", "две "),
   words: [
     [
@@ -58,6 +59,7 @@ const ENGLISH_RUBLE_DICTIONARY: DictionaryProps = {
   currency: "ruble",
   million: "million",
   billion: "billion",
+  trillion: "trillion",
   thousand: "thousand",
   words: [
     [
@@ -102,6 +104,7 @@ const ERROR_RUSSIAN_RUBLE_DICTIONARY: DictionaryProps = {
   thousand: ["тысяча", "тысячи", "тысяч"],
   million: ["миллион", "миллиона", "миллионов"],
   billion: ["миллиард", "миллиарда", "миллиардов"],
+  trillion: ["триллион", "триллиона", "триллионов"],
   declinationOfThousands: (x) => x.replace("один ", "одна ").replace("два ", "две "),
   words: [
     [
@@ -444,6 +447,20 @@ describe("testing `formatNumberToWord`", () => {
         expect(result).toBe("один миллиард рублей 00 копеек");
       });
 
+      test("trillion number", () => {
+        const result = formatNumberToWord(1000000000000, {
+          language: Language.Russian,
+          currencyCode: CurrencyCode.RussianRuble,
+          dictionary: {
+            [CurrencyCode.RussianRuble]: {
+              [Language.Russian]: RUSSIAN_RUBLE_DICTIONARY,
+            },
+          },
+        });
+
+        expect(result).toBe("один триллион рублей 00 копеек");
+      });
+
       test("error dictionary", () => {
         const result = formatNumberToWord(1000000000, {
           language: Language.Russian,
@@ -489,8 +506,8 @@ describe("testing `formatNumberToWord`", () => {
         expect(result).toBe("one thousand ruble 00 kopeck");
       });
 
-      test("thousand number", () => {
-        const result = formatNumberToWord(1000000000000, {
+      test("billion number", () => {
+        const result = formatNumberToWord(1000000000, {
           language: Language.English,
           currencyCode: CurrencyCode.RussianRuble,
           dictionary: {
@@ -501,6 +518,20 @@ describe("testing `formatNumberToWord`", () => {
         });
 
         expect(result).toBe("one billion ruble 00 kopeck");
+      });
+
+      test("trillion number", () => {
+        const result = formatNumberToWord(1000000000000, {
+          language: Language.English,
+          currencyCode: CurrencyCode.RussianRuble,
+          dictionary: {
+            [CurrencyCode.RussianRuble]: {
+              [Language.English]: ENGLISH_RUBLE_DICTIONARY,
+            },
+          },
+        });
+
+        expect(result).toBe("one trillion ruble 00 kopeck");
       });
     });
   });

@@ -3,6 +3,7 @@ export interface DictionaryProps {
   readonly cent: string | string[];
   readonly million: string | string[];
   readonly billion: string | string[];
+  readonly trillion: string | string[];
   readonly currency: string | string[];
   readonly thousand: string | string[];
   readonly declinationOfThousands?: (word: string) => string;
@@ -155,7 +156,15 @@ const plural = (count: string | number, options: string[]): string => {
 const parseNumber = (
   number: string,
   count: number,
-  { currency, million, billion, thousand, declinationOfThousands, words }: DictionaryProps,
+  {
+    currency,
+    million,
+    billion,
+    thousand,
+    declinationOfThousands,
+    trillion,
+    words,
+  }: DictionaryProps,
 ) => {
   let first;
   let second;
@@ -195,7 +204,11 @@ const parseNumber = (
       numeral = numeral + plural(value, parseStringToArray(million, true));
     }
   } else if (count === 3) {
-    numeral = numeral + plural(value, parseStringToArray(billion, true));
+    if (numeral !== "  ") {
+      numeral = numeral + plural(value, parseStringToArray(billion, true));
+    }
+  } else if (count === 4) {
+    numeral = numeral + plural(value, parseStringToArray(trillion, true));
   }
 
   return numeral;
