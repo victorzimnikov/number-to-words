@@ -98,6 +98,7 @@ export enum CurrencyCode {
   ETB = "ETB",
   ZAR = "ZAR",
   JMD = "JMD",
+  NAN = "NAN",
 }
 
 function parseStringToArray(value: string | string[], withSpace?: boolean): string[] {
